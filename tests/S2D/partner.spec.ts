@@ -1,11 +1,12 @@
 
 // to exceute this test, run the following command in the terminal:
-// npx playwright test tests/partner.spec.ts --headed
+// npx playwright test tests/S2D/partner.spec.ts --headed
+
 
 
 import { test, expect } from '@playwright/test';
 
-test('midoc', async ({ page }) => {
+test('store2door', async ({ page }) => {
   await page.goto('https://store2door-partner-test.azurewebsites.net/SignIn/EmailSignIn');
   await page.waitForTimeout(3000);
 
@@ -22,15 +23,16 @@ test('midoc', async ({ page }) => {
     await page.waitForTimeout(5000);
 
     //Receipts 
-    await page.goto('https://store2door-partner-test.azurewebsites.net/');
-    await page.waitForTimeout(2000);
+    await page.waitForURL('https://store2door-partner-test.azurewebsites.net/');
+    await page.waitForTimeout(5000);
 
     //Create Receipt
     await page.locator('a.create-receipt-btn').nth(0).click();
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(4000);
 
     // Select the camera and gallery options
-    await page.locator('img[src*="photo-upload-img.png"]').nth(0).click();
+    const photoUploadImg = page.locator('img[src*="photo-upload-img.png"]').nth(0);
+    await photoUploadImg.click();
     await page.waitForTimeout(2000);
 
     //gallery 
@@ -43,7 +45,7 @@ test('midoc', async ({ page }) => {
    await page.waitForTimeout(3000);
 
    // Tracking No 
-   await page.locator('input.form-control.emojisNotAllowed').nth(0).fill('NIK-4567890');
+   await page.locator('input.form-control.emojisNotAllowed').nth(0).fill('NIK-4567891');
     await page.waitForTimeout(2000);
 
     //Package from
@@ -65,8 +67,31 @@ test('midoc', async ({ page }) => {
     //Save & Next 
     await page.locator('a.save-btn').click();
     await page.waitForTimeout(5000);
-    page.pause();
 
+    //Item Name
+    await page.locator('input.form-control.py-3.description.emojisNotAllowed').fill('Shoes');
+    await page.waitForTimeout(4000);
+
+    //selecting from dropdown 
+    await page.locator('li.itemnamelist').nth(1).click();
+    await page.waitForTimeout(2000);
+
+    //Unit Price
+    await page.locator('input.form-control.totalpricevalue.price.emojisNotAllowed').fill('1000');
+    await page.waitForTimeout(2000);
+
+    //Quantity
+    await page.locator('input.form-control.totalpricevalue.quantity.emojisNotAllowed').fill('2');
+    await page.waitForTimeout(2000);
+
+    //Update & Next 
+    await page.locator('a.save-btn').click();
+    await page.waitForTimeout(5000);
+
+   //ex:- await page.getByPlaceholder('Enter the pickup address').click();
+
+    
+//await page.get
 
 
 
