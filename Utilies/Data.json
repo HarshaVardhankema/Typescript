@@ -1,0 +1,20 @@
+
+
+    {
+      "username" : "Ben08@gmail.com",
+     "firstname" : "Ben",
+     "Lastname" : "Stock",
+     "Weight" : "80",
+     "Feet" : "6",
+     "Inches" : "1",
+     "year" : "2000",
+     "Month" : "August",
+     "Mobile" : "9887765678",
+    "OTP1" : "1",
+    "OTP2" : "2",
+    "OTP3" : "3",
+     "OTP4" : "4",
+    "newPassword" : "midoc123",
+    "Confirmpassword" : "midoc123"
+
+    }

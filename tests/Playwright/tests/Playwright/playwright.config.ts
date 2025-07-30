@@ -1,5 +1,4 @@
 import { defineConfig, devices } from '@playwright/test';
-import { channel } from 'diagnostics_channel';
 
 /**
  * Read environment variables from file.
@@ -14,11 +13,6 @@ import { channel } from 'diagnostics_channel';
  */
 export default defineConfig({
   testDir: './tests',
-  timeout: 50000,
-  expect : {
-    timeout: 50000,
-  } ,
-  // Set a global timeout of 30 seconds for each test
   /* Run tests in files in parallel */
   fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -35,11 +29,7 @@ export default defineConfig({
     // baseURL: 'http://127.0.0.1:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on',
-    screenshot: 'on',
-    video: 'on',
-     ignoreHTTPSErrors: true,
-    permissions:['geolocation']
+    trace: 'on-first-retry',
   },
 
   /* Configure projects for major browsers */
@@ -49,14 +39,14 @@ export default defineConfig({
 
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'] , channel: 'firefox' },
+      use: { ...devices['Desktop Firefox'] },
     },
 
-    /*
     
+    /*
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'], channel: 'chrome' },
+      use: { ...devices['Desktop Chrome'] },
     },
 
    
