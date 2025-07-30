@@ -1,3 +1,5 @@
+// npx playwright test tests/midoc/midoc.spec.ts --headed
+
 import { test, expect } from '@playwright/test'
 
 test('midoc', async ({ page }) => {
